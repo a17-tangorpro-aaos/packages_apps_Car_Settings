@@ -87,4 +87,12 @@ public class AudioRouteController extends PreferenceController<Preference> {
     protected Class<Preference> getPreferenceType() {
         return Preference.class;
     }
+
+    @Override
+    protected int getDefaultAvailabilityStatus() {
+        if (!mCarAudioManager.isAudioFeatureEnabled(CarAudioManager.AUDIO_FEATURE_DYNAMIC_ROUTING)) {
+            return UNSUPPORTED_ON_DEVICE;
+        }
+        return AVAILABLE;
+    }
 }
